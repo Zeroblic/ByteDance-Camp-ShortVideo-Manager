@@ -1,47 +1,23 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaHome, FaVideo, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
-
+import React from "react";
 import "./style.css";
 
-const Sidebar = () => {
-    const { pathname } = useLocation();
-    const navigate = useNavigate();
+interface Props {
+    visible: boolean;
+    onLeave: () => void;
+}
 
-    const logout = () => {
-        localStorage.removeItem("token");
-        navigate("/login");
-    };
-
+const Sidebar: React.FC<Props> = ({ visible, onLeave }) => {
     return (
-        <div className="sidebar">
-            <h2 className="logo">短视频后台</h2>
-
-            <nav className="menu">
-                <Link to="/" className={pathname === "/" ? "active" : ""}>
-                    <FaHome className="icon" />
-                    推荐视频
-                </Link>
-
-                <Link to="/create" className={pathname === "/create" ? "active" : ""}>
-                    <FaVideo className="icon" />
-                    创作中心
-                </Link>
-
-                <Link to="/my" className={pathname === "/my" ? "active" : ""}>
-                    <FaUser className="icon" />
-                    我的主页
-                </Link>
-
-                <Link to="/settings" className={pathname === "/settings" ? "active" : ""}>
-                    <FaCog className="icon" />
-                    设置
-                </Link>
-
-                <div className="logout" onClick={logout}>
-                    <FaSignOutAlt className="icon" />
-                    退出登录
-                </div>
-            </nav>
+        <div 
+            className={`sidebar-float ${visible ? "show" : ""}`}
+            onMouseLeave={onLeave}
+        >
+            <h2>短视频后台</h2>
+            <div className="menu">推荐视频</div>
+            <div className="menu">创作中心</div>
+            <div className="menu">我的主页</div>
+            <div className="menu">设置</div>
+            <div className="menu">退出登录</div>
         </div>
     );
 };

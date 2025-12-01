@@ -1,48 +1,57 @@
-.sidebar {
-    width: 240px;
-    height: 100vh;
-    background: #1e1e1e;
-    color: white;
-    padding: 24px 20px;
+/* 悬浮头像按钮 */
+.floating-avatar {
     position: fixed;
-    left: 0;
-    top: 0;
+    top: 20px;
+    left: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: white;                     /*  添加背景圈 */
+    padding: 4px;                           /* 让头像缩进产生边 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* 阴影 */
+    z-index: 3000;
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 35px;
+.floating-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 
-.menu a,
-.menu .logout {
-    display: flex;
-    align-items: center;
-    gap: 12px;
 
-    color: #ccc;
-    text-decoration: none;
-    font-size: 16px;
 
-    padding: 10px 12px;
-    border-radius: 6px;
+/* 悬浮 Sidebar（抽屉） */
+.sidebar-float {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 220px;
+    background: #222;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 
+    opacity: 0;
+    transform: translateX(-15px) scale(0.95);
+    pointer-events: none;
+    transition: 0.25s ease;
+    z-index: 2100;
+}
+
+.sidebar-float.show {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+}
+
+.menu {
+    margin: 14px 0;
+    font-size: 15px;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.menu a:hover,
-.menu .logout:hover {
-    background: #292929;
-    color: white;
-}
-
-.menu a.active {
-    background: #444;
-    color: white;
-}
-
-.icon {
-    font-size: 18px;
+.menu:hover {
+    color: #fb7299;
 }

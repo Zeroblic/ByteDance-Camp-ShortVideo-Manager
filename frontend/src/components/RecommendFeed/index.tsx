@@ -62,8 +62,8 @@ const RecommendFeed: React.FC<Props> = ({ initialVideos }) => {
     return (
         <div className="explore-container">
             <div className="explore-grid">
-                {videos.map(video => (
-                    <RecommendCard key={video.id} video={video} />
+                {videos.map((video, index)   => (
+                    <RecommendCard key={`${video.id}-${index}`} video={video} />
                 ))}
             </div>
 

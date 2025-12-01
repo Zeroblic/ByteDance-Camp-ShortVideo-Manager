@@ -7,47 +7,63 @@ export interface VideoItem {
     description: string;
     likes: number;
     comments: number;
+    category: string;
 }
 
 export const MOCK_VIDEOS: VideoItem[] = [
     {
         id: 1,
-        url: "https://cdn.videvo.net/videvo_files/video/premium/video0037/large_watermarked/644_644-0263_preview.mp4",
-        thumbnailUrl: "https://picsum.photos/id/1011/400/500",
-        title: "城市延时摄影",
-        author: "创作者_A",
-        description: "傍晚城市的延时光流。",
+        url: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+        thumbnailUrl: "https://picsum.photos/seed/video1_new/400/500",
+        title: "兔子动画 (720P, 1MB)",
+        author: "测试源",
+        description: "高兼容性测试视频源，用于快速切换测试。",
         likes: 382,
         comments: 45,
+        category: "动画"
     },
     {
         id: 2,
-        url: "https://cdn.videvo.net/videvo_files/video/free/2013-08/large_watermarked/Night_Traffic_Lapse_preview.mp4",
-        thumbnailUrl: "https://picsum.photos/id/1021/400/500",
-        title: "夜间车流",
-        author: "创作者_B",
-        description: "快速闪动的车轨，超炫。",
+        url: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+        thumbnailUrl: "https://picsum.photos/seed/video2_new/400/500",
+        title: "高清动画 (720P, 20MB)",
+        author: "测试源",
+        description: "高质量测试源，适合清晰度测试。",
         likes: 580,
         comments: 110,
+        category: "电影剪辑"
     },
     {
         id: 3,
-        url: "https://cdn.videvo.net/videvo_files/video/free/2014-04/large_watermarked/big_buck_bunny_1080p_h264_preview.mp4",
-        thumbnailUrl: "https://picsum.photos/id/1031/400/500",
-        title: "测试视频 · 兔子动画",
-        author: "创作者_C",
-        description: "非常流畅的 mp4，适合播放器调试。",
-        likes: 723,
-        comments: 90,
+        url: "https://media.w3.org/2010/05/bunny/trailer.mp4",
+        thumbnailUrl: "https://picsum.photos/seed/video3_new/400/500",
+        title: "短篇 CG 作品",
+        author: "CG 团队",
+        description: "精致的 CG 短片，用于渲染和渲染性能测试。",
+        likes: 920,
+        comments: 230,
+        category: "CG"
     },
     {
         id: 4,
-        url: "https://cdn.videvo.net/videvo_files/video/premium/video0038/large_watermarked/643_643-0125_preview.mp4",
-        thumbnailUrl: "https://picsum.photos/id/1041/400/500",
-        title: "森林航拍",
-        author: "创作者_D",
-        description: "航拍森林，画面唯美。",
-        likes: 951,
-        comments: 210,
+        url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        thumbnailUrl: "https://picsum.photos/seed/video4_new/400/500",
+        title: "自然花朵微距",
+        author: "自然摄影",
+        description: "真实花朵微距拍摄，用于色彩测试。",
+        likes: 744,
+        comments: 89,
+        category: "自然"
     },
+    {
+        id: 5,
+        url: "https://media.w3.org/2010/05/bunny/movie.mp4",
+        thumbnailUrl: "https://picsum.photos/seed/video5_new/400/500",
+        title: "卡通短片片段",
+        author: "动画制作",
+        description: "用于卡通类内容展示。",
+        likes: 311,
+        comments: 26,
+        category: "卡通"
+    }
 ];

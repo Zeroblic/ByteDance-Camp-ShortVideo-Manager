@@ -1,102 +1,134 @@
-import React, { useRef, useState, useEffect } from "react";
-import type { VideoItem } from "../../mock/videos";
-import { useParams } from "react-router-dom";
-import "./style.css";
+import React, { useRef, useState, useEffect } from 'react';
+import './style.css';
+import { FaHeart, FaCommentDots, FaShare, FaMusic } from 'react-icons/fa';
+
+// 定义视频数据接口
+export interface VideoItem {
+    id: number;
+    url: string;
+    author: string;
+    description: string;
+    likes: string;
+    comments: string;
+    muted: boolean;
+}
 
 interface Props {
     videos: VideoItem[];
-    initialIndex?: number;
 }
 
 const VideoFeed: React.FC<Props> = ({ videos }) => {
-    const { id } = useParams();
-    const initialIndex = id ? videos.findIndex(v => v.id === Number(id)) : 0;
-    const [currentIndex, setCurrentIndex] = useState(initialIndex);
-    const containerRef = useRef<HTMLDivElement>(null);
+    // 用于管理当前正在播放哪个视频（可选优化）
+    // const [currentIndex, setCurrentIndex] = useState(0);
+    const [globalMuted, setGlobalMuted] = useState(true);
 
-    // 上滑下一条
-    const nextVideo = () => {
-        setCurrentIndex((prev) => Math.min(prev + 1, videos.length - 1));
-    };
-
-    // 下滑上一条
-    const prevVideo = () => {
-        setCurrentIndex((prev) => Math.max(prev - 1, 0));
-    };
-
-    // 处理滑动逻辑
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        let startY = 0;
-        let endY = 0;
-
-        const touchStart = (e: TouchEvent) => {
-            startY = e.touches[0].clientY;
-        };
-
-        const touchEnd = (e: TouchEvent) => {
-            endY = e.changedTouches[0].clientY;
-            const deltaY = endY - startY;
-
-            if (deltaY < -80) nextVideo();      // 上滑
-            else if (deltaY > 80) prevVideo(); // 下滑
-        };
-
-        container.addEventListener("touchstart", touchStart);
-        container.addEventListener("touchend", touchEnd);
-
-        return () => {
-            container.removeEventListener("touchstart", touchStart);
-            container.removeEventListener("touchend", touchEnd);
-        };
-    }, []);
 
     return (
-        <div className="video-feed-container" ref={containerRef}>
-            {videos.map((video, i) => (
-                <VideoPlayer
+        <div className="video-feed-container">
+            {videos.map((video, index) => (
+                <VideoCard
                     key={video.id}
                     data={video}
-                    isActive={i === currentIndex}
+                    muted={globalMuted}
+                    onToggleMuted={() => setGlobalMuted(m => !m)}
                 />
+
             ))}
         </div>
     );
 };
 
-export default VideoFeed;
+// 单个视频卡片组件
+const VideoCard: React.FC<{ data: VideoItem; muted: boolean; onToggleMuted: () => void }>
+    = ({ data, muted, onToggleMuted }) => {
+        const videoRef = useRef<HTMLVideoElement>(null);
+        const [isPlaying, setIsPlaying] = useState(false);
 
+        // 点击切换播放/暂停
+        const togglePlay = () => {
+            if (videoRef.current) {
+                if (isPlaying) {
+                    videoRef.current.pause();
+                } else {
+                    videoRef.current.play();
+                }
+                setIsPlaying(!isPlaying);
+            }
+        };
 
-// ----------------------------------------------------------------------
-// 单个视频播放器
-// ----------------------------------------------------------------------
-const VideoPlayer = ({ data, isActive }: { data: VideoItem; isActive: boolean }) => {
-    const videoRef = useRef<HTMLVideoElement>(null);
+        // 使用 IntersectionObserver 实现划走自动暂停 (性能优化关键)
+        useEffect(() => {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            videoRef.current?.play();
+                            setIsPlaying(true);
+                        } else {
+                            videoRef.current?.pause();
+                            setIsPlaying(false);
+                        }
+                    });
+                },
+                { threshold: 0.6 } // 当60%可见时触发
+            );
 
-    useEffect(() => {
-        if (!videoRef.current) return;
+            if (videoRef.current) {
+                observer.observe(videoRef.current);
+            }
 
-        if (isActive) videoRef.current.play();
-        else videoRef.current.pause();
-    }, [isActive]);
+            return () => {
+                if (videoRef.current) observer.unobserve(videoRef.current);
+            };
+        }, []);
 
-    return (
-        <div className="video-wrapper">
-            <video
-                ref={videoRef}
-                src={data.url}
-                className="video-player"
-                muted
-                loop
-                playsInline
-            />
+        return (
+            <div className="video-card">
+                {/* 视频层 */}
+                <video
+                    ref={videoRef}
+                    className="video-player"
+                    src={data.url}
+                    loop
+                    playsInline
+                    onClick={togglePlay}
+                    muted={muted}
+                />
 
-            <div className="video-info">
-                <h3>@{data.author}</h3>
-                <p>{data.description}</p>
+                {/* 底部信息层 */}
+                <div className="footer-info">
+                    <div className="username">@{data.author}</div>
+                    <div className="description">{data.description}</div>
+                    <div className="music-note">
+                        <FaMusic /> 原始声音 - {data.author}
+                    </div>
+                </div>
+
+                {/* 右侧交互层 */}
+                <div className="sidebar">
+                    <div className="icon-wrapper">
+                        <div style={{ border: '2px solid white', borderRadius: '50%', width: 45, height: 45, background: '#eee', marginBottom: 10 }}>
+                            {/* 这里放头像 img */}
+                        </div>
+                    </div>
+                    <div className="icon-wrapper">
+                        <FaHeart />
+                        <span>{data.likes}</span>
+                    </div>
+                    <div className="icon-wrapper">
+                        <FaCommentDots />
+                        <span>{data.comments}</span>
+                    </div>
+                    <div className="icon-wrapper">
+                        <FaShare />
+                        <span>分享</span>
+                    </div>
+                    <button onClick={onToggleMuted}>
+                        {muted ? '🔇' : '🔊'}
+                    </button>
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    };
+
+export default VideoFeed;

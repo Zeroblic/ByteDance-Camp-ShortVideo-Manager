@@ -1,0 +1,84 @@
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.banner-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.banner-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-title {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    font-size: 22px;
+    color: white;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+}
+
+.banner-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.45);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 10;
+    transition: 0.2s;
+}
+
+.banner-btn:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+.banner-btn.left {
+    left: 12px;
+}
+
+.banner-btn.right {
+    right: 12px;
+}
+
+.banner-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: white;
+}

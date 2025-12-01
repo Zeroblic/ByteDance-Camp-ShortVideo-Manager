@@ -1,0 +1,95 @@
+/* 让背景图从浏览器最顶端开始，无空白 */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* 背景图 Banner */
+.header-banner {
+    width: 100vw;
+    height: 200px;
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    margin-left: calc(50% - 50vw); /* 贴满左右 */
+}
+
+/* 包裹分类导航 + 搜索内容 */
+.header-content-wrapper {
+    width: 100%;
+    margin-top: -180px;       /* 让分类标签靠在背景底部，不覆盖搜索框 */
+    margin-bottom: 60px;
+}
+
+/* 分类标签区 */
+.top-nav {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.top-nav span {
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    backdrop-filter: blur(6px);  /* 轻微毛玻璃 */
+    cursor: pointer;
+}
+
+.top-nav span:hover {
+    background: rgba(25, 19, 19, 0.7);
+}
+
+/* 搜索框与按钮 */
+.center-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;   /* 完全对齐 */
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 450px;
+    height: 40px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 30px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-size: 15px;
+    color: #333;
+
+    height: 100%;
+    line-height: 40px;   /* 让输入文字与 placeholder 完全居中对齐 */
+    padding: 0;
+}
+
+.search-box input::placeholder {
+    color: #999;
+    line-height: 40px;   /* 可选：保证 placeholder 完美居中 */
+}
+
+
+.publish-btn {
+    background: #fb7299;
+    padding: 12px 26px;
+    border-radius: 24px;
+    border: none;
+    font-size: 18px;   /* 字体更大 */
+    font-weight: 700;  /* 更粗 */
+    color: #fff;
+    cursor: pointer;
+}

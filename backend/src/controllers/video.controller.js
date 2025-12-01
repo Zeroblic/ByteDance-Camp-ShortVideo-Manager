@@ -8,7 +8,7 @@ export const publishVideo = (req, res) => {
     return res.status(400).json({ msg: "视频文件缺失" });
   }
 
-  const url = `/uploads/${file.filename}`;
+  const url = `http://localhost:3001/uploads/${file.filename}`;
 
   db.query(
     "INSERT INTO video (title, category, url, user_id) VALUES (?, ?, ?, ?)",

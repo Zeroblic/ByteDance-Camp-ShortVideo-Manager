@@ -1,9 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import RecommendFeed from "./components/RecommendFeed";
-import VideoFeed from "./components/VideoFeed";
-import { MOCK_VIDEOS } from "./mock/videos";
+// import RecommendFeed from "./components/RecommendFeed";
+// import VideoFeed from "./components/VideoFeed";
+// import { MOCK_VIDEOS } from "./mock/videos";
+import HomePage from "./pages/Home";
+import VideoPage from "./pages/VideoPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Create from "./pages/Create";
@@ -20,8 +22,8 @@ function App() {
 
       {/* 登录后页面（显示侧边栏） */}
       <Route element={<MainLayout />}>
-        <Route path="/" element={<RecommendFeed initialVideos={MOCK_VIDEOS} />} />
-        <Route path="/video/:id" element={<VideoFeed videos={MOCK_VIDEOS} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/video/:id" element={<VideoPage />} />
         <Route path="/create" element={<Create />} />
         <Route path="/my" element={<MyVideos />} />
       </Route>
