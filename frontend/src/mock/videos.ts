@@ -65,5 +65,16 @@ export const MOCK_VIDEOS: VideoItem[] = [
         likes: 311,
         comments: 26,
         category: "卡通"
+    },
+    {
+        id: 6,
+        url: "https://media.w3.org/2010/05/bunny/movie.mp4",
+        thumbnailUrl: "https://picsum.photos/seed/video6_new/400/500",
+        title: "卡通短片片段2",
+        author: "动画制作",
+        description: "用于卡通类内容展示。",
+        likes: 311,
+        comments: 26,
+        category: "卡通"
     }
 ];

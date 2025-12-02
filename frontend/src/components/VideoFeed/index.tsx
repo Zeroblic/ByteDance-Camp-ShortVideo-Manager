@@ -41,7 +41,7 @@ const VideoFeed: React.FC<Props> = ({ videos }) => {
 // 单个视频卡片组件
 const VideoCard: React.FC<{ data: VideoItem; muted: boolean; onToggleMuted: () => void }>
     = ({ data, muted, onToggleMuted }) => {
-        const videoRef = useRef<HTMLVideoElement>(null);
+        const videoRef = useRef<HTMLVideoElement | null>(null);
         const [isPlaying, setIsPlaying] = useState(false);
 
         // 点击切换播放/暂停
@@ -62,11 +62,15 @@ const VideoCard: React.FC<{ data: VideoItem; muted: boolean; onToggleMuted: () =
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            videoRef.current?.play();
-                            setIsPlaying(true);
+                            if (videoRef.current) {
+                                videoRef.current.play();
+                                setIsPlaying(true);
+                            }
                         } else {
-                            videoRef.current?.pause();
-                            setIsPlaying(false);
+                            if (videoRef.current) {
+                                videoRef.current.pause();
+                                setIsPlaying(false);
+                            }
                         }
                     });
                 },

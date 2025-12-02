@@ -8,17 +8,18 @@ const MainLayout = () => {
 
     return (
         <div>
-            {/* 悬浮头像 */}
-            <FloatingAvatar 
-                onHover={() => setOpen(true)} 
-                onLeave={() => setOpen(false)}
-            />
+            {/* 悬浮头像与可展开侧边栏 */}
+            <div>
+                <FloatingAvatar
+                    onHover={() => setOpen(true)}
+                />
 
-            {/* 悬浮侧边栏 */}
-            <Sidebar 
-                visible={open} 
-                onLeave={() => setOpen(false)} 
-            />
+                {/* 悬浮侧边栏 */}
+                <Sidebar
+                    visible={open}
+                    onLeave={() => setOpen(false)} 
+                />
+            </div>
 
             {/* 页面内容（显示子路由页面） */}
             <div style={{ paddingLeft: 0 }}>

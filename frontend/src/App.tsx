@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import Create from "./pages/Create";
 import MainLayout from "./layout/MainLayout";
 import MyVideos from "./pages/MyVideos";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -22,10 +23,26 @@ function App() {
 
       {/* 登录后页面（显示侧边栏） */}
       <Route element={<MainLayout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/video/:id" element={<VideoPage />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/my" element={<MyVideos />} />
+        <Route path="/" element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        } />
+        <Route path="/video/:id" element={
+          <ProtectedRoute>
+            <VideoPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/create" element={
+          <ProtectedRoute>
+            <Create />
+          </ProtectedRoute>
+        } />
+        <Route path="/my" element={
+          <ProtectedRoute>
+            <MyVideos />
+          </ProtectedRoute>
+        } />
       </Route>
     </Routes>
   );
