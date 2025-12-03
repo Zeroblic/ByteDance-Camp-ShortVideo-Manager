@@ -1,0 +1,77 @@
+.create-container {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    font-family: "Inter", "Helvetica", "Arial", sans-serif;
+    animation: fadeIn 0.4s ease;
+}
+
+.create-container h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #222;
+    text-align: center;
+}
+
+/* 输入框通用样式 */
+.create-input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: 1.5px solid #ddd;
+    font-size: 15px;
+    transition: 0.25s;
+    box-sizing: border-box;
+}
+
+.create-input:focus {
+    border-color: #4a73ff;
+    box-shadow: 0 0 0 3px rgba(74, 115, 255, 0.15);
+    outline: none;
+}
+
+/* 文件选择框 */
+.create-file-input {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+/* 上传按钮 */
+.create-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #4a73ff, #6d5dfc);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.25s ease;
+    font-weight: 500;
+}
+
+.create-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.create-btn:active {
+    transform: scale(0.98);
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

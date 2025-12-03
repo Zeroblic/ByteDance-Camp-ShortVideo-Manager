@@ -6,11 +6,14 @@ import { FaHeart, FaCommentDots, FaShare, FaMusic } from 'react-icons/fa';
 export interface VideoItem {
     id: number;
     url: string;
+    title: string;
     author: string;
     description: string;
-    likes: string;
-    comments: string;
-    muted: boolean;
+    likes: number;
+    comments: number;
+    muted?: boolean;
+    thumbnailUrl: string;
+    category: string;
 }
 
 interface Props {

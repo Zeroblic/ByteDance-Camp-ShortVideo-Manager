@@ -12,6 +12,7 @@ import Create from "./pages/Create";
 import MainLayout from "./layout/MainLayout";
 import MyVideos from "./pages/MyVideos";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -41,6 +42,11 @@ function App() {
         <Route path="/my" element={
           <ProtectedRoute>
             <MyVideos />
+          </ProtectedRoute>
+        } />
+        <Route path="/settings" element={
+          <ProtectedRoute>
+            <Settings />
           </ProtectedRoute>
         } />
       </Route>

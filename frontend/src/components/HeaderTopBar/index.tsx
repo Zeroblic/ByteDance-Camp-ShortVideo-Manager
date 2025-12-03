@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import { CiSearch } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
     "热门","影视","动画","鬼畜","舞蹈","娱乐",
@@ -8,6 +9,7 @@ const categories = [
 ];
 
 const HeaderTopBar = () => {
+    const navigate = useNavigate();
     return (
         <>
         <div className="header-banner"></div>
@@ -26,7 +28,7 @@ const HeaderTopBar = () => {
                     <input type="text" placeholder="搜索你感兴趣的内容..." />
                 </div>
 
-                <button className="publish-btn">投稿</button>
+                <button className="publish-btn" onClick={() => navigate("/create")}>投稿</button>
             </div>
         </div>
         </>

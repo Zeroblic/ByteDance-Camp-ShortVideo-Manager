@@ -10,7 +10,6 @@ const FloatingAvatar: React.FC<Props> = ({ onHover }) => {
         <div 
             className="floating-avatar"
             onMouseEnter={onHover}
-            
         >
             <img 
                 src="https://i.pravatar.cc/60"

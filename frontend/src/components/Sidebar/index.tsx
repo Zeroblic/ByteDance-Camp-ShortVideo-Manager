@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
+import { getUserName } from "../GetUserInfo";
 
 interface Props {
     visible: boolean;
@@ -14,11 +15,11 @@ const Sidebar: React.FC<Props> = ({ visible, onLeave }) => {
             className={`sidebar-float ${visible ? "show" : ""}`}
             onMouseLeave={onLeave}
         >
-            <h2>短视频后台</h2>
+            <h2>Hello! {getUserName()}</h2>
             <div className="menu" onClick={() => navigate(`/`)}>首页</div>
             <div className="menu" onClick={() => navigate(`/create`)}>创作中心</div>
             <div className="menu" onClick={() => navigate(`/my`)}>我的主页</div>
-            <div className="menu" onClick={() => navigate(`/setting`)}>设置</div>
+            <div className="menu" onClick={() => navigate(`/settings`)}>设置</div>
             <div className="menu" onClick={() => {
                 localStorage.removeItem("token");
                 navigate(`/login`);

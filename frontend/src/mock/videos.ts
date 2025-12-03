@@ -8,6 +8,7 @@ export interface VideoItem {
     likes: number;
     comments: number;
     category: string;
+    muted?: boolean;
 }
 
 export const MOCK_VIDEOS: VideoItem[] = [
