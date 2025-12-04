@@ -28,7 +28,7 @@ const VideoFeed: React.FC<Props> = ({ videos }) => {
 
     return (
         <div className="video-feed-container">
-            {videos.map((video, index) => (
+            {videos.map((video) => (
                 <VideoCard
                     key={video.id}
                     data={video}

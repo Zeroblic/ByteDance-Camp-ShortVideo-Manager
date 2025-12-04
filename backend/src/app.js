@@ -2,11 +2,16 @@ import express from "express";
 import cors from "cors";
 import { fileURLToPath } from "url";
 import path from "path";
-
+import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import videoRoutes from "./routes/video.routes.js";
 
+
 const app = express();
+
+await connectDB();
+
+// 中间件
 app.use(cors());
 app.use(express.json());
 
